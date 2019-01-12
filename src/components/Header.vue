@@ -36,7 +36,7 @@
                 <a href="#" @click="saveData">Save Data</a>
               </li>
               <li>
-                <a href="#">Load Data</a>
+                <a href="#" @click="loadData">Load Data</a>
               </li>
             </ul>
           </li>
@@ -63,7 +63,10 @@
       }
     },
     methods: {
-      ...mapActions(['randomizeStocks']),
+      ...mapActions({
+          randomizeStocks: 'randomizeStocks',
+          fetchData: 'loadData'
+      }),
       endDay() {
         this.randomizeStocks();
       },
@@ -75,6 +78,9 @@
         }
 
         this.$http.put('data.json', data);
+      },
+      loadData() {
+        this.fetchData();
       }
     }
   }
